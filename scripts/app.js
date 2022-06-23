@@ -191,7 +191,7 @@ async function peliculasPopulares() {
       document.write("<p>Fecha de estreno: "+element.release_date.toString()+"</p>");
       //Generos
       document.write("<p>Generos:</p>");
-      printMovieGenre(element,i);
+      printMovieGenre(element);
       //Cast
       document.write("<p>Cast:</p>");
       await movieCast(element);
@@ -204,7 +204,7 @@ async function peliculasPopulares() {
 }
 
 //Print Movies Genres
-function printMovieGenre(element, i){
+function printMovieGenre(element){
   //Los generos se obtienen como un Array
   let generosText = "";
   let genreArrayLength = element.genre_ids.length;
@@ -222,7 +222,24 @@ function printMovieGenre(element, i){
   document.write(generosText);
 }
 
-
+//Print Movies Genres by searching function
+function printMovieGenreBySearching(element){
+  //Los generos se obtienen como un Array
+  let generosText = "";
+  let genreArrayLength = element.genres.length;
+  for (let j = 0; j < genreArrayLength; j++) {
+    let genero = genreLinkedList.search(element.genres[j].id);
+    //Si es el ultimo genero del array no se agrega la ","
+    if(j==genreArrayLength-1){
+      generosText+=genero.data.toString();  
+      break;
+    }else{
+      generosText+=genero.data.toString()+", ";
+    }
+  }
+  generosText+="</p>";
+  document.write(generosText);
+}
 
 
 //https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=15dd6e9ec0fffe546ae26db0b789e2ea&language=es-MX
@@ -284,7 +301,7 @@ async function moviesByGenre(genre_id) {
       document.write("<p>Fecha de estreno: "+element.release_date.toString()+"</p>");
       //Generos
       document.write("<p>Generos:</p>");
-      printMovieGenre(element,i);
+      printMovieGenre(element);
       //Cast
       document.write("<p>Cast:</p>");
       await movieCast(element);
@@ -294,10 +311,48 @@ async function moviesByGenre(genre_id) {
   }
 }
 
+
+async function searchMovieByID(imdb_id) {
+  try{
+    //Petición de las peliculas populares
+    let direccion = "https://api.themoviedb.org/3/movie/"+imdb_id.toString();
+    let pelicula_busqueda = await axios.get(direccion, {
+      params: {
+        api_key: "15dd6e9ec0fffe546ae26db0b789e2ea",
+        language: "es-MX"
+      }
+    })
+    pelicula = pelicula_busqueda.data;
+    console.log(pelicula_busqueda);
+    //Obtenemos el titulo de la pelicula
+    document.write("<h3>"+pelicula.title.toString()+"</h3>");
+    //Peticion de la configuracion de las imagenes
+    let startPath = await getMoviesImagesConf();
+    //Obtenemos la imagen de la pelicula
+    let completePath = startPath+pelicula.poster_path; 
+    let imagePath = '<img src="'+completePath+'" alt="Movie Poster">';
+    document.write(imagePath);
+    //Descripcion
+    document.write("<p>"+pelicula.overview.toString()+"</p>");
+    //Fecha de estreno
+    document.write("<p>Fecha de estreno: "+pelicula.release_date.toString()+"</p>");
+    //Generos
+    document.write("<p>Generos:</p>");
+    printMovieGenreBySearching(pelicula);
+    //Cast
+    document.write("<p>Cast:</p>");
+    await movieCast(pelicula);
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
 //Ejecuta las funciones necesarias en el orden adecuado
 function master(){
-  peliculasPopulares();
+  //peliculasPopulares();
   //878 = Ciencia ficción
-  moviesByGenre(878);
+  //moviesByGenre(878);
+  searchMovieByID(508947);
 }
 master();
