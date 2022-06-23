@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/streamingApp/swiper-bundle.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <title>LaHouseTv</title>
+</head>
+<body>
+  <header>
+    <!-- Nav-->
+    <div class="nav container">
+      <!-- Logo-->
+      <a href="/streamingApp/index.html" class="logo">
+        NoEsCuevana.<span>COM</span>
+      </a>
+      <!-- Search Button-->
+      <div class="search-box">
+        <input type="search" name="" id="search-input" placeholder="Search">
+        <i class='bx bx-search-alt-2'></i>
+      </div>
+      <!-- Usuario-->
+      <a href="#" class="user">
+        <img src="/streamingApp/user.png" alt="" class="user-img">
+      </a>
+      <!--NavBar-->
+      <div class="navbar">
+        <a href="#home" class="nav-link nav-active">
+          <i class='bx bx-home-alt-2' ></i>
+          <span class="nav-link-title">Home</span>
+        </a>
+        <a href="#home" class="nav-link">
+          <i class='bx bxs-hot' ></i>
+          <span class="nav-link-title">Trending</span>
+        </a>
+        <a href="#home" class="nav-link">
+          <i class='bx bx-compass' ></i>
+          <span class="nav-link-title">Explore</span>
+        </a>
+        <a href="#home" class="nav-link">
+          <i class='bx bx-heart' ></i>
+          <span class="nav-link-title">Favourites</span>
+        </a>
+        <a href="#home" class="nav-link">
+          <i class='bx bx-movie-play' ></i>
+          <span class="nav-link-title">Categories</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Home -->
+
+  <section class="home container" id="home">
+    <img src="https://picsum.photos/seed/picsum/200/300" alt="" class="home-img">
+    <div class="home-text">
+      <h1 class="home-title"> The Mountain <br>in the Sky</h1>
+      <p> On June 27th</p>
+      <a href="#" class="watch-btn">
+        <i class='bx bx-play-circle' ></i>
+        <span>Trailer</span>
+      </a>
+
+    </div>
+  </section>
+  <!-- Carousel -->
+  <section>
+     <!-- Slideshow container -->
+<div class="slideshow-container">
+
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <img src="https://picsum.photos/200/200" style="width:100%">
+    <div class="home-text">
+      <h1 class="home-title"><span> The Mountain in the Sky  </span></h1>
+      <p><span> On June 27th </span></p>
+      <a href="#" class="watch-btn btn-cent">
+        <i class='bx bx-play-circle' ></i>
+        <p><span>Trailer</span></p>
+      </a>
+    </div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://picsum.photos/200/180" style="width:100%">
+    <div class="text">Caption Two</div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://picsum.photos/200/160" style="width:100%">
+    <div class="text">Caption Three</div>
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div> 
+  </section>
+  <!-- Popular -->
+  <section class="popular container" id="popular">
+    <!--Heading-->
+    <div class="heading">
+      <h2 class="heading-title"> Popular now!</h2>
+      <!--Botones Desplazamiento-->
+      <div class="swiper-btn">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+    <!-- Contenido-->
+    <div class="popular-content swiper">
+      <div class="swiper-wrapper">
+        <!-- Movies Box 1-->
+        <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Movies Box 2-->
+        <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+         <!-- Movies Box 3-->
+         <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+         <!-- Movies Box 4-->
+         <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+         <!-- Movies Box 5-->
+         <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+         <!-- Movies Box 6-->
+         <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+         <!-- Movies Box 7-->
+         <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+         <!-- Movies Box 8-->
+         <div class="swiper-slide">
+          <div class="movie-box">
+            <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+            <div class="box-text">
+              <h2 class="movie-title"> La araña humana</h2>
+              <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+              <a href="#" class="watch-btn play-btn">
+                <i class='bx bx-play-circle' ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End popular section-->
+  <!--Movies General Section-->
+  <section class="movies container" id="movies">
+    <!--Heading-->
+    <div class="heading">
+      <h2 class="heading-title"> Movies</h2>
+    </div>
+    <!--Movies Content-->
+    <div class="movies-content">
+      <!--Movies Box 1-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img" id="">
+        <div class="box-text">
+          <h2 class="movie-title" id="movie-name-1"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="/streamingApp/playPage.html" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+
+      <!--Movies Box 2-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+        <div class="box-text">
+          <h2 class="movie-title"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="#" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+      <!--Movies Box 3-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+        <div class="box-text">
+          <h2 class="movie-title"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="#" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+      <!--Movies Box 4-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+        <div class="box-text">
+          <h2 class="movie-title"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="#" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+      <!--Movies Box 5-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+        <div class="box-text">
+          <h2 class="movie-title"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="#" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+      <!--Movies Box 6-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+        <div class="box-text">
+          <h2 class="movie-title"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="#" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+      <!--Movies Box 7-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+        <div class="box-text">
+          <h2 class="movie-title"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="#" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+      <!--Movies Box 8-->
+      <div class="movie-box">
+        <img src="https://picsum.photos/200/160" alt="" class="movie-box-img">
+        <div class="box-text">
+          <h2 class="movie-title"> La araña humana</h2>
+          <span class="movie-type"> Comedy </span> <!--  Change depending on the API element-->
+          <a href="#" class="watch-btn play-btn">
+            <i class='bx bx-play-circle' ></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- Movies Section End-->
+  <!--Next Page-->
+  <div class="next-page">
+    <a href="#" class="next-btn">Top</a>
+  </div>
+<!--Copyright-->
+  <div class="copyright">
+    <p> &#169; ROMEVA All Rights Reserved</p>
+
+  </div>
+
+
+
+  <script src="/streamingApp/swiper-bundle.min.js "></script>
+  <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+  <script src="/streamingApp/script.js"></script>
+</body>
+</html>
