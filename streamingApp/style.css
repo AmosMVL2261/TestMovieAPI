@@ -333,14 +333,14 @@ p span{
     transition: .7s;
 }
 
-.next-page{
+.top-page{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 2.5rem;
 }
 
-.next-btn {
+.top-btn {
     background: var(--main-bg-color) ;
     padding: 12px 20px;
     color: var(--text-color);
