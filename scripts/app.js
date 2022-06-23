@@ -182,7 +182,7 @@ async function peliculasPopulares() {
       //Obtenemos el titulo de la pelicula
       document.write("<h3>"+element.title.toString()+"</h3>");
       //Obtenemos la imagen de la pelicula
-      let completePath = startPath+populares.data.results[i].poster_path; 
+      let completePath = startPath+element.poster_path; 
       let imapePath = '<img src="'+completePath+'" alt="Movie Poster">';
       document.write(imapePath);
       //Descripcion
@@ -191,7 +191,10 @@ async function peliculasPopulares() {
       document.write("<p>Fecha de estreno: "+element.release_date.toString()+"</p>");
       //Generos
       document.write("<p>Generos:</p>");
-      printMovieGenre(populares,i);
+      printMovieGenre(element,i);
+      //Cast
+      document.write("<p>Cast:</p>");
+      await movieCast(element);
     }
     
   }catch(error){
@@ -201,12 +204,12 @@ async function peliculasPopulares() {
 }
 
 //Print Movies Genres
-function printMovieGenre(peliculas, i){
+function printMovieGenre(element, i){
   //Los generos se obtienen como un Array
   let generosText = "";
-  let genreArrayLength = peliculas.data.results[i].genre_ids.length;
+  let genreArrayLength = element.genre_ids.length;
   for (let j = 0; j < genreArrayLength; j++) {
-    let genero = genreLinkedList.search(peliculas.data.results[i].genre_ids[j]);
+    let genero = genreLinkedList.search(element.genre_ids[j]);
     //Si es el ultimo genero del array no se agrega la ","
     if(j==genreArrayLength-1){
       generosText+=genero.data.toString();  
@@ -219,4 +222,82 @@ function printMovieGenre(peliculas, i){
   document.write(generosText);
 }
 
-peliculasPopulares();
+
+
+
+//https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=15dd6e9ec0fffe546ae26db0b789e2ea&language=es-MX
+//Get Movies cast
+async function movieCast(element) {
+  try{
+    //Petición de las peliculas populares
+    let direccion = "https://api.themoviedb.org/3/movie/"+element.id.toString()+"/credits";
+    let cast = await axios.get(direccion, {
+      params: {
+        api_key: "15dd6e9ec0fffe546ae26db0b789e2ea",
+        language: "es-MX"
+      }
+    })
+    moviePeople = cast.data.cast;
+    let castList;
+    for (let i = 0; i < 3; i++) {
+      let actor = moviePeople[i];
+      let character = actor.character;
+      let realPerson = actor.name;
+      castList="Character: "+character.toString()+", Actor: "+realPerson;
+      document.write("<p>"+castList+"</p>");
+    }
+    
+  }catch(error){
+    console.log(error);
+  }
+}
+
+async function moviesByGenre(genre_id) {
+  try{
+    //Petición de las peliculas populares
+    let direccion = "https://api.themoviedb.org/3/discover/movie";
+    let peliculasGenero = await axios.get(direccion, {
+      params: {
+        api_key: "15dd6e9ec0fffe546ae26db0b789e2ea",
+        language: "es-MX",
+        with_genres:genre_id,
+        page:1
+      }
+    })
+    movies = peliculasGenero.data.results;
+    console.log(movies);
+    //Peticion de la configuracion de las imagenes
+    let startPath = await getMoviesImagesConf();
+    //Imprimir la información por pantalla
+    let moviesLength = movies.length;
+    for (let i = 0; i < moviesLength; i++) {
+      let element = movies[i];
+      //Obtenemos el titulo de la pelicula
+      document.write("<h3>"+element.title.toString()+"</h3>");
+      //Obtenemos la imagen de la pelicula
+      let completePath = startPath+element.poster_path; 
+      let imagePath = '<img src="'+completePath+'" alt="Movie Poster">';
+      document.write(imagePath);
+      //Descripcion
+      document.write("<p>"+element.overview.toString()+"</p>");
+      //Fecha de estreno
+      document.write("<p>Fecha de estreno: "+element.release_date.toString()+"</p>");
+      //Generos
+      document.write("<p>Generos:</p>");
+      printMovieGenre(element,i);
+      //Cast
+      document.write("<p>Cast:</p>");
+      await movieCast(element);
+    }
+  }catch(error){
+    console.log(error);
+  }
+}
+
+//Ejecuta las funciones necesarias en el orden adecuado
+function master(){
+  peliculasPopulares();
+  //878 = Ciencia ficción
+  moviesByGenre(878);
+}
+master();
