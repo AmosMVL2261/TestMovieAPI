@@ -244,7 +244,25 @@ async function getMoviesImagesConf() {
     })
     let imagePath = "";
     imagePath += configData.data.images.secure_base_url;
-    imagePath += configData.data.images.poster_sizes[2]; //[2]w185 ó [3]342
+    imagePath += configData.data.images.poster_sizes[4]; //[2]w185 ó [3]342 o [4]w500
+    return imagePath;
+  }catch(error){
+    console.log(error);
+  }
+
+}
+
+async function getMoviesImagesConf2() {
+  try{
+    //Petición de las peliculas populares
+    let configData = await axios.get('https://api.themoviedb.org/3/configuration', {
+      params: {
+        api_key: "15dd6e9ec0fffe546ae26db0b789e2ea"
+      }
+    })
+    let imagePath = "";
+    imagePath += configData.data.images.secure_base_url;
+    imagePath += configData.data.images.poster_sizes[5]; //[2]w185 ó [3]342 o [4]w500
     return imagePath;
   }catch(error){
     console.log(error);
@@ -265,10 +283,11 @@ async function peliculasPopulares() {
     })
     //Peticion de la configuracion de las imagenes
     let startPath = await getMoviesImagesConf();
+    let startPathBig = await getMoviesImagesConf2();
     console.log(populares.data.results);
     //Imprimir la información por pantalla
     let moviesLength = populares.data.results.length;
-    for (let i = 0; i < moviesLength; i++) {
+    /*for (let i = 0; i < moviesLength; i++) {
       let element = populares.data.results[i];
       //Obtenemos el titulo de la pelicula
       document.write("<h3>"+element.title.toString()+"</h3>");
@@ -286,8 +305,38 @@ async function peliculasPopulares() {
       //Cast
       document.write("<p>Cast:</p>");
       await movieCast(element);
+    }*/
+    for (let i = 0; i < 8; i++) {
+      let element = populares.data.results[i];
+      let idNuevo = "img-pop-" + (i+1).toString();
+      let completePath = startPath+element.poster_path;
+      let peliculaSeleccionada= document.getElementById(idNuevo);
+      peliculaSeleccionada.setAttribute("src", completePath);
     }
-    
+
+    for (let i = 0; i < 3; i++) {
+      let element = populares.data.results[i];
+      let idNuevo = "img-big-" + (i+1).toString();
+      let completePath = startPathBig+element.poster_path;
+      let peliculaSeleccionada= document.getElementById(idNuevo);
+      peliculaSeleccionada.setAttribute("src", completePath);
+    }
+    for (let i = 0; i < 8; i++) {
+      var arrayMoviesPop=[];
+      let element = populares.data.results[i];
+      arrayMoviesPop.push(element.id.toString())
+      let idNuevo = "pop-name-" + (i+1).toString();
+      let peliculaSeleccionada= document.getElementById(idNuevo);
+      peliculaSeleccionada.innerText= element.title.toString();
+    }
+    for (let i = 0; i < 8; i++) {
+      let element = populares.data.results[i];
+      let idNuevo = "pop-gen-" + (i+1).toString();
+      let peliculaSeleccionada= document.getElementById(idNuevo);
+      peliculaSeleccionada.innerText= printMovieGenre(element) ;
+    }
+
+
   }catch(error){
     console.log(error);
   }
@@ -309,8 +358,8 @@ function printMovieGenre(element){
       generosText+=genero.data.toString()+", ";
     }
   }
-  generosText+="</p>";
-  document.write(generosText);
+  //generosText+="</p>";
+  return generosText;
 }
 
 //Print Movies Genres by searching function
@@ -361,6 +410,7 @@ async function movieCast(element) {
 }
 
 async function moviesByGenre(genre_id) {
+
   try{
     //Petición de las peliculas populares
     let direccion = "https://api.themoviedb.org/3/discover/movie";
@@ -378,7 +428,7 @@ async function moviesByGenre(genre_id) {
     let startPath = await getMoviesImagesConf();
     //Imprimir la información por pantalla
     let moviesLength = movies.length;
-    for (let i = 0; i < moviesLength; i++) {
+    /*for (let i = 0; i < moviesLength; i++) {
       let element = movies[i];
       //Obtenemos el titulo de la pelicula
       document.write("<h3>"+element.title.toString()+"</h3>");
@@ -396,7 +446,57 @@ async function moviesByGenre(genre_id) {
       //Cast
       document.write("<p>Cast:</p>");
       await movieCast(element);
+    }*/
+    if(genre_id===35){
+      for (let i = 0; i < 8; i++) {
+        let element = peliculasGenero.data.results[i];
+        let idNuevo = "img-comedy-" + (i+1).toString();
+        let completePath = startPath+element.poster_path;
+        let peliculaSeleccionada= document.getElementById(idNuevo);
+        peliculaSeleccionada.setAttribute("src", completePath);
+      }
+      for (let i = 0; i < 8; i++) {
+        var arrayMoviesPop=[];
+        let element = peliculasGenero.data.results[i];
+        arrayMoviesPop.push(element.id.toString())
+        let idNuevo = "comedy-n-" + (i+1).toString();
+        let peliculaSeleccionada= document.getElementById(idNuevo);
+        peliculaSeleccionada.innerText= element.title.toString();
+      }
+      for (let i = 0; i < 8; i++) {
+        let element = peliculasGenero.data.results[i];
+        let idNuevo = "comedy-g-" + (i+1).toString();
+        let peliculaSeleccionada= document.getElementById(idNuevo);
+        peliculaSeleccionada.innerText= printMovieGenre(element) ;
+      }
+
     }
+    if(genre_id===28){
+      for (let i = 0; i < 8; i++) {
+        let element = peliculasGenero.data.results[i];
+        let idNuevo = "img-action-" + (i+1).toString();
+        let completePath = startPath+element.poster_path;
+        let peliculaSeleccionada= document.getElementById(idNuevo);
+        peliculaSeleccionada.setAttribute("src", completePath);
+      }
+
+            for (let i = 0; i < 8; i++) {
+        var arrayMoviesPop=[];
+        let element = peliculasGenero.data.results[i];
+        arrayMoviesPop.push(element.id.toString())
+        let idNuevo = "comedy-n-" + (i+1).toString();
+        let peliculaSeleccionada= document.getElementById(idNuevo);
+        peliculaSeleccionada.innerText= element.title.toString();
+      }
+      for (let i = 0; i < 8; i++) {
+        let element = peliculasGenero.data.results[i];
+        let idNuevo = "comedy-g-" + (i+1).toString();
+        let peliculaSeleccionada= document.getElementById(idNuevo);
+        peliculaSeleccionada.innerText= printMovieGenre(element) ;
+      }
+    }
+
+
   }catch(error){
     console.log(error);
   }
@@ -414,7 +514,7 @@ async function searchMovieByID(imdb_id) {
       }
     })
     pelicula = pelicula_busqueda.data;
-    console.log(pelicula_busqueda);
+    /*console.log(pelicula_busqueda);
     //Obtenemos el titulo de la pelicula
     document.write("<h3>"+pelicula.title.toString()+"</h3>");
     //Peticion de la configuracion de las imagenes
@@ -432,21 +532,38 @@ async function searchMovieByID(imdb_id) {
     printMovieGenreBySearching(pelicula);
     //Cast
     document.write("<p>Cast:</p>");
-    await movieCast(pelicula);
+    await movieCast(pelicula);*/
+
+      let peliculaSeleccionada= document.getElementById("movie-shown-Play");
+      peliculaSeleccionada.innerText= pelicula.title.toString();
+
+
   }catch(error){
     console.log(error);
   }
 }
 
 
+function clickInfo(){
+  var el = document.getElementById("bt-pop-1");
+  el.addEventListener("click", ()=>searchMovieByID(508947));
+}
+
+
+
+
+
 //Ejecuta las funciones necesarias en el orden adecuado
 function master(){
-  //peliculasPopulares();
+  peliculasPopulares();
   //878 = Ciencia ficción
-  //moviesByGenre(878);
-  searchMovieByID(508947);
+  moviesByGenre(35);
+  moviesByGenre(28);
+
+  //searchMovieByID(508947);
 }
 master();
+
 
 
 
